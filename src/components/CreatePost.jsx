@@ -7,7 +7,9 @@ const CreatePost = () => {
   const userIdElement=useRef();
   const postTitleElement=useRef();
   const postBodyElement=useRef();
-  const reactionsElement=useRef();
+  const likesElement=useRef();
+  const dislikesElement=useRef();
+  const viewsElement=useRef();
   const tagsElement=useRef();
 
   let handleSubmit=(event)=>{
@@ -15,16 +17,20 @@ const CreatePost = () => {
     const userId=userIdElement.current.value;
     const postTitle=postTitleElement.current.value;
     const postBody=postBodyElement.current.value;
-    const reactions=reactionsElement.current.value;
+    const likes=likesElement.current.value;
+    const views=viewsElement.current.value;
+    const dislikes=dislikesElement.current.value;
     const tags=tagsElement.current.value.split(' ');
 
     userIdElement.current.value="";
     postTitleElement.current.value="";
-    reactionsElement.current.value="";
+    likesElement.current.value="";
+    dislikesElement.current.value="";
+    viewsElement.current.value="";
     postBodyElement.current.value="";
     tagsElement.current.value="";
     
-    addPost(userId,postTitle,postBody,reactions,tags);
+    addPost(userId,postTitle,postBody,{likes,dislikes},views,tags);
   }
 
   return (
@@ -45,8 +51,16 @@ const CreatePost = () => {
   </div>
  
   <div className="mb-3">
-    <label htmlFor="reaction"  className="form-label">Reactions</label>
-    <input type="text" ref={reactionsElement} className="form-control" id="reaction"/>
+    <label htmlFor="like"  className="form-label">Like</label>
+    <input type="text" ref={likesElement} className="form-control" id="like"/>
+  </div>
+  <div className="mb-3">
+    <label htmlFor="dislike"  className="form-label">Dislike</label>
+    <input type="text" ref={dislikesElement} className="form-control" id="dislike"/>
+  </div>
+  <div className="mb-3">
+    <label htmlFor="views" className="form-label">Views</label>
+    <input type="text" ref={viewsElement}  className="form-control" id="views"/>
   </div>
   <div className="mb-3">
     <label htmlFor="tags" className="form-label">Tags</label>

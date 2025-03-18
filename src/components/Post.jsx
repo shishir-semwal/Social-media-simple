@@ -1,6 +1,10 @@
 import React, { useContext } from 'react'
 import { MdDelete } from "react-icons/md";
 import { PostListData } from '../store/post-list-store';
+import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
+import { MdRemoveRedEye } from "react-icons/md";
+
 
 const Post = ({post}) => {
   const {deletePost}=useContext(PostListData);
@@ -16,9 +20,12 @@ const Post = ({post}) => {
     <span className="visually-hidden">unread messages</span>
   </span>
     <p className="card-text">{post.body}</p>
-    <div className="alert alert-success reactions " role="alert">
-    <p>This post got {post.reactions} reactions</p>
-</div>
+    &nbsp;
+    {post.reactions.likes}<AiOutlineLike />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {post.reactions.dislikes} <AiOutlineDislike />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     {post.views} <MdRemoveRedEye />
+<br /><br />
     {post.tags.map((tag)=><span key={tag} className="badge text-bg-primary hashtag">{tag}&nbsp;</span>)}
     
   </div>
